@@ -1,0 +1,64 @@
+#include <iostream>
+
+class Shape {
+public:
+    double calculateArea(double side) const {
+        return side * side;
+    }
+
+    double calculateArea(double width, double height) const {
+        return width * height;
+    }
+
+    double calculateArea(double base, double height, bool isTriangle) const {
+        if (isTriangle) {
+            return 0.5 * base * height;
+        }
+        return 0;
+    }
+};
+
+int main() {
+    Shape shape;
+    int choice;
+    
+    std::cout << "Select shape to calculate area:" << std::endl;
+    std::cout << "1. Square" << std::endl;
+    std::cout << "2. Rectangle" << std::endl;
+    std::cout << "3. Triangle" << std::endl;
+    std::cout << "Enter your choice (1/2/3): ";
+    std::cin >> choice;
+
+    switch (choice) {
+        case 1: {
+            double side;
+            std::cout << "Enter the side length of the square: ";
+            std::cin >> side;
+            std::cout << "Area of Square: " << shape.calculateArea(side) << std::endl;
+            break;
+        }
+        case 2: {
+            double width, height;
+            std::cout << "Enter the width of the rectangle: ";
+            std::cin >> width;
+            std::cout << "Enter the height of the rectangle: ";
+            std::cin >> height;
+            std::cout << "Area of Rectangle: " << shape.calculateArea(width, height) << std::endl;
+            break;
+        }
+        case 3: {
+            double base, height;
+            std::cout << "Enter the base of the triangle: ";
+            std::cin >> base;
+            std::cout << "Enter the height of the triangle: ";
+            std::cin >> height;
+            std::cout << "Area of Triangle: " << shape.calculateArea(base, height, true) << std::endl;
+            break;
+        }
+        default:
+            std::cout << "Invalid choice!" << std::endl;
+            break;
+    }
+
+    return 0;
+}
