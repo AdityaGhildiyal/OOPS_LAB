@@ -1,0 +1,79 @@
+ /*Create a class called Time that has separate int member data for hours, minutes and
+seconds. One constructor should initialize this data to 0, and another should
+initialize it to fixed values. A member function should display it in 11:59:59 format.
+A member function named add() should add two objects of type time passed as
+arguments. A main ( ) program should create two initialized values together, leaving
+the result in the third time variable. Finally it should display the value of this third
+variable*/
+ 
+ #include <iostream>
+ using namespace std;
+
+ class time{
+    
+    private:
+        int hours;
+        int seconds;
+        int minutes;
+    
+    public:
+        time(){
+            hours = 0;
+            minutes =0;
+            seconds = 0;
+
+        }
+
+        time(int hours,int minutes,int seconds){
+            this->hours = hours;
+            this->minutes = minutes;
+            this->seconds = seconds;
+
+        }
+
+        void display(){
+            cout<<hours<<":"<<minutes<<":"<<seconds<<endl;
+        }
+
+        void add(time t1,time t2){
+            
+            if(t1.seconds + t2.seconds > 60){
+                minutes = minutes + (t1.seconds+t2.seconds)/60 ;
+                this->seconds = (t1.seconds + t2.seconds)%60 ;
+            }
+            else{
+                this->seconds = t1.seconds + t2.seconds;
+
+            }
+            if(minutes + t1.minutes + t2.minutes > 60){
+                hours = hours + (minutes  + t1.minutes + t2.minutes)/60 ;
+                this->minutes = (t1.minutes +  t2.minutes + minutes)%60 ;
+            }
+            else{
+                this->minutes =minutes+ t1.minutes + t2.minutes;
+            }
+            if(hours + t1.hours + t2.hours > 24){
+                hours = hours + (t1.hours + t2.hours)%24 ;
+            }
+            else{
+                this->hours  = hours+ t1.hours + t2.hours ;
+
+            }
+        }
+        
+ };
+ 
+ 
+ int main(){
+    time T3;
+
+    time T1(9,56,56);
+    time T2(4,35,46);
+
+    T1.display();
+    T2.display();
+
+    T3.add(T1,T2);
+    T3.display();
+    return 0;
+ }
