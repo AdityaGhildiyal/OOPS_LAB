@@ -1,0 +1,60 @@
+/*Create a class Complex having two int type variable named real & img denoting
+real and imaginary part respectively of a complex number. Overload +, - , ==
+operator to add, to subtract and to compare two complex numbers being denoted by
+the two complex type objects*/
+
+
+#include <iostream>
+using namespace std;
+
+class Complex{
+    int real,imaginary;
+    public:
+        Complex(int real,int imaginary){
+            this->real=real;
+            this->imaginary=imaginary;
+        }
+        
+        Complex operator + (Complex obj){
+            Complex temp(0,0);
+            temp.real = real + obj.real;
+            temp.imaginary = imaginary + obj.imaginary;
+            return temp;
+        }
+
+        Complex operator - (Complex &obj){
+            Complex temp(0,0);
+            temp.real = real - obj.real;
+            temp.imaginary = imaginary - obj.imaginary;
+            return temp;
+        }
+
+        bool operator == (Complex &obj){
+            return (real == obj.real && imaginary == obj.imaginary);
+        }
+
+        void output(){
+            cout<<real<<"+"<<imaginary<<"i"<<endl;
+        }
+
+};
+
+
+
+
+int main(){
+    Complex c1(12,34) , c2(19,65);
+    Complex c4(19,65);
+    Complex c3 = c1 + c2;
+    c3.output();
+
+    if(c2 == c4){
+        cout <<"equal"<<endl;
+    }
+    else{
+        cout<<"not equal"<<endl;
+    }
+
+    return 0;
+
+}
